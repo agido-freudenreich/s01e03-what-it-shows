@@ -1,0 +1,25 @@
+---
+layout: runbook
+title: '#4471 · more than one problem'
+owner: Stefan Freudenreich
+status: open
+reviewed: 2026-10-28
+signature: Stefan Freudenreich
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+#4471 merged every date report into one ticket and marked it known: the parser reads dates month first. That is one of the problems. It is not the only one.
+
+A report counts once per id. The export repeats some ids, and the repeats are the same report.
+
+A swapped day and month is the shared parser, except when the report came in on the booking-v3 form. That form prints `MM/DD/YYYY` and then reads the field day first. The swap looks the same. The bug is the hint.
+
+Reports that name no pair stay with the parser when the body is still that bug: a day-first setting, October bookings landing in January, a wrong day with no second date, a date given in words so the parser cannot flip it. The rest are not the parser. The calendar shows the day before the words do. June moves by one day and other months do not. An invite arrives before the booking exists. One meeting is Tuesday in Lisbon and Monday in Toronto.
+
+<ProblemTable ticket={4471} />
+
+<RenderStamp {signature} />
