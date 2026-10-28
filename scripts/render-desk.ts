@@ -100,7 +100,7 @@ const html = `<!doctype html>
       <h1>#4471 · more than one problem</h1>
       <p class="meta">
         <span>owner <b>Stefan Freudenreich</b></span>
-        <span class="status open">open</span>
+        <span class="status closed">closed</span>
         <span>reviewed ${isoDay(reviewed)} · ${age} days ago</span>
       </p>
     </header>
@@ -109,6 +109,7 @@ const html = `<!doctype html>
       <p>The shared parser reads a day-first date month first. That cause is this ticket.</p>
       <p>booking-v3 prints <code>MM/DD/YYYY</code> under the date field and then reads the field day first. Those reports were merged into #4471. They are a second problem, and they have no ticket of their own.</p>
       <p>A few reports were read as a one-day move. The desk still counts them under the cause their tenant files them in.</p>
+      <p>#4471 closed on 05 Oct. The parser is fixed: parse dd/mm for eu locales. The form hint will not be fixed: booking-v3 is retired.</p>
       <p class="sum"><strong>${merged.length}</strong> reports merged into #${ticket} · <strong>${groups.length}</strong> ${groups.length === 1 ? 'cause' : 'causes'}</p>
       <table>
         <thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead>

@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · more than one problem'
 owner: Stefan Freudenreich
-status: open
+status: closed
 reviewed: 2026-10-28
 signature: "v1.eyJzdWIiOiIyNzc1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxNjkzNDMsImV4cCI6MTc5MzI1NTc0M30.w-yvQwpR-YTnvt2y1dS8N4YFH9gysGk1FT6EyShZx2c"
 ---
@@ -19,6 +19,8 @@ The shared parser reads a day-first date month first. That cause is this ticket.
 booking-v3 prints `MM/DD/YYYY` under the date field and then reads the field day first. Those reports were merged into #4471. They are a second problem, and they have no ticket of their own.
 
 A few reports were read as a one-day move. The desk still counts them under the cause their tenant files them in.
+
+#4471 closed on 05 Oct. The parser is fixed: parse dd/mm for eu locales. The form hint will not be fixed: booking-v3 is retired.
 
 <CauseTable ticket={4471} />
 
