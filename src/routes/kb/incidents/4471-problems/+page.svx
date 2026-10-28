@@ -4,7 +4,7 @@ title: '#4471 · more than one problem'
 owner: Stefan Freudenreich
 status: open
 reviewed: 2026-10-28
-signature: Stefan Freudenreich
+signature: "v1.eyJzdWIiOiIyNzc1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxNjkzNDMsImV4cCI6MTc5MzI1NTc0M30.w-yvQwpR-YTnvt2y1dS8N4YFH9gysGk1FT6EyShZx2c"
 ---
 
 <script>

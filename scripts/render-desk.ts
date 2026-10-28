@@ -30,7 +30,8 @@ const ticket = 4471;
 const merged = uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket);
 const groups = groupByCause(merged, tenantOf);
 const owner = ticketCause(groups, ticket);
-const signature = 'Stefan Freudenreich';
+const signature =
+  'v1.eyJzdWIiOiIyNzc1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxNjkzNDMsImV4cCI6MTc5MzI1NTc0M30.w-yvQwpR-YTnvt2y1dS8N4YFH9gysGk1FT6EyShZx2c';
 const reviewed = '2026-10-28';
 const ref = deskRef(signature);
 const age = daysSince(reviewed);

@@ -3,3 +3,4 @@ node_modules
 .svelte-kit
 dist
 rendered/problems.json
+.challenge-log/
