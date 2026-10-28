@@ -8,18 +8,18 @@ signature: Stefan Freudenreich
 ---
 
 <script>
-  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-#4471 merged every date report into one ticket and marked it known: the parser reads dates month first. That is one of the problems. It is not the only one.
+#4471 was marked known, as one parser bug. The desk’s own table is the count, from the export, one row per report id.
 
-A report counts once per id. The export repeats some ids, and the repeats are the same report.
+The shared parser reads a day-first date month first. That cause is this ticket.
 
-A swapped day and month is the shared parser, except when the report came in on the booking-v3 form. That form prints `MM/DD/YYYY` and then reads the field day first. The swap looks the same. The bug is the hint.
+booking-v3 prints `MM/DD/YYYY` under the date field and then reads the field day first. Those reports were merged into #4471. They are a second problem, and they have no ticket of their own.
 
-Reports that name no pair stay with the parser when the body is still that bug: a day-first setting, October bookings landing in January, a wrong day with no second date, a date given in words so the parser cannot flip it. The rest are not the parser. The calendar shows the day before the words do. June moves by one day and other months do not. An invite arrives before the booking exists. One meeting is Tuesday in Lisbon and Monday in Toronto.
+A few reports were read as a one-day move. The desk still counts them under the cause their tenant files them in.
 
-<ProblemTable ticket={4471} />
+<CauseTable ticket={4471} />
 
 <RenderStamp {signature} />

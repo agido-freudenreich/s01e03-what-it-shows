@@ -25,6 +25,10 @@
     .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--muted); font-size: 0.85rem; margin: 0; }
     .status { border: 1px solid var(--line); border-radius: 99px; padding: 0 0.6rem; }
     .sum { font-size: 1.1rem; }
+    .tags { color: var(--muted); font-size: 0.85em; }
+    .note { color: var(--muted); font-size: 0.85em; }
+    .wrong td { background: var(--warn-bg); }
+    .wrong td:last-child { color: var(--warn); font-weight: 600; }
     footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
     .stamp { margin: 2rem 0 0; font: 0.85rem var(--mono); color: var(--muted); }
     .stamp b { color: var(--accent); letter-spacing: 0.04em; }
@@ -42,22 +46,20 @@
       </p>
     </header>
     <main>
-      <p>#4471 merged every date report into one ticket and marked it known: the parser reads dates month first. That is one of the problems. It is not the only one.</p>
-      <p>A report counts once per id. The export repeats some ids, and the repeats are the same report.</p>
-      <p>A swapped day and month is the shared parser, except when the report came in on the booking-v3 form. That form prints <code>MM/DD/YYYY</code> and then reads the field day first. The swap looks the same. The bug is the hint.</p>
-      <p>Reports that name no pair stay with the parser when the body is still that bug: a day-first setting, October bookings landing in January, a wrong day with no second date, a date given in words so the parser cannot flip it. The rest are not the parser. The calendar shows the day before the words do. June moves by one day and other months do not. An invite arrives before the booking exists. One meeting is Tuesday in Lisbon and Monday in Toronto.</p>
-      <p class="sum"><strong>412</strong> reports in #4471, one row per id · <strong>6</strong> problems</p>
+      <p>#4471 was marked known, as one parser bug. The desk’s own table is the count, from the export, one row per report id.</p>
+      <p>The shared parser reads a day-first date month first. That cause is this ticket.</p>
+      <p>booking-v3 prints <code>MM/DD/YYYY</code> under the date field and then reads the field day first. Those reports were merged into #4471. They are a second problem, and they have no ticket of their own.</p>
+      <p>A few reports were read as a one-day move. The desk still counts them under the cause their tenant files them in.</p>
+      <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
       <table>
-        <thead><tr><th>problem</th><th>reports</th><th>what it is</th></tr></thead>
+        <thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead>
         <tbody>
-          <tr><td><code>parser</code></td><td>374</td><td>Parser reads a day-first date month first. The shared parser reads every date month first. A day-first tenant sends the day first, and the month and the day come out swapped.</td></tr>
-<tr><td><code>hint</code></td><td>33</td><td>booking-v3 form prints MM/DD and reads the day first. booking-v3 prints MM/DD/YYYY under the date field. The people follow the hint, and the form then reads the field the tenant’s way, day first. Same swap, different bug, and only on that form.</td></tr>
-<tr><td><code>previous-day</code></td><td>2</td><td>Calendar shows the previous day. The words name the right day, and the calendar lands on the day before. Tuesday 12 May is Monday 11 May. Tuesday 6 October shows as Monday.</td></tr>
-<tr><td><code>june-only</code></td><td>1</td><td>June bookings move by one day. Every booking in June is one day off, and other months are not. This is not the month/day swap.</td></tr>
-<tr><td><code>early-invite</code></td><td>1</td><td>Invite arrives before the booking exists. The invite is delivered before the booking is made.</td></tr>
-<tr><td><code>timezone-day</code></td><td>1</td><td>One meeting is a different day in Lisbon and Toronto. The same meeting is Tuesday for a client in Lisbon and Monday for a client in Toronto.</td></tr>
+          <tr><td><code>parser</code></td><td>379</td><td class="tags">parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
+<tr class="wrong"><td><code>hint</code></td><td>33</td><td class="tags">hint ×18 · parser ×15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — no ticket of its own</td></tr>
         </tbody>
       </table>
+      <p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
+
       <p class="stamp">desk ref <b>DR-HARC-CTQE</b></p>
     </main>
     <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
